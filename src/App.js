@@ -51,7 +51,7 @@ function App() {
         </div>
       </div>
 {/* Question label */}
-      <div ><h2>{questions[currentQuestion].question}</h2></div>
+      <div><h2>{questions[currentQuestion].question}</h2></div>
       {/* Answers */}
       <div >{
         questions[currentQuestion].incorrect.map(incorrect =>(
