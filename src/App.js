@@ -35,18 +35,17 @@ function App () {
   }
 
   return (
-<div className="app">
-  <Header/>
+<div>
+<Header/>
   {
     /* Display the score if the user is at end of the quiz else next question */
     showScore
       ? (<ScoreCard score={score} questions={questions} restart={handleRestart} />)
-      : (
-        <QuestionCard question={currentQuestion} questions={questions} submit={handleSubmitAnswer} />
-        )
+      : (<QuestionCard question={currentQuestion} questions={questions} submit={handleSubmitAnswer} />)
   }
 
 </div>
+
   )
 }
 
