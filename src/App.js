@@ -33,27 +33,27 @@ function App() {
 
  }
   return (
-<div className="App">
+<div className="app">
   <Header/>
   {
     /* Display the score if the user is at end of the quiz else next question*/
     showScore ? (
-      <div className='score-div'>
+      <div >
 <h3>You scored {score} out of {questions.length}</h3>
 <button onClick={handleRestart}>Restart</button>
       </div>
     ) : (
-      <div className="question-section">
-      <div className="question-div">
-        <div className="question-count">
-          <h3 className="round-count">{currentQuestion + 1 <=10 ? 'Round 1': 'Round 2'}</h3>
-          <span>Question: {currentQuestion +1 }</span>/{questions.length}
+      <div >
+      <div >
+        <div >
+          <h3>{currentQuestion + 1 <=10 ? 'Round 1': 'Round 2'}</h3>
+          <span>Question: {currentQuestion +1 }/{questions.length}</span>
         </div>
       </div>
 {/* Question label */}
-      <div className="question-text">{questions[currentQuestion].question}</div>
+      <div ><h2>{questions[currentQuestion].question}</h2></div>
       {/* Answers */}
-      <div className="answer-div">{
+      <div >{
         questions[currentQuestion].incorrect.map(incorrect =>(
         <button onClick={()=>handleSubmitAnswer(false)}>{incorrect}</button>
         ))
