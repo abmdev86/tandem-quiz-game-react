@@ -14,10 +14,17 @@ function App () {
    *
    */
   const handleSubmitAnswer = (isCorrect) => {
+    // e.preventDefault()
+
     if (isCorrect) {
+      // e.target.style.class = 'correct'
       setScore(score + 1)
-      console.log(`score ${score}`)
+      console.log('correct')
     }
+    setTimeout(() => changeQuestion(), 1000)
+  }
+  function changeQuestion () {
+    console.log('hello from changeQuestion')
     const nextQuestion = currentQuestion + 1
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion)
@@ -35,7 +42,7 @@ function App () {
   }
 
   return (
-<div>
+<div className="app">
 <Header/>
   {
     /* Display the score if the user is at end of the quiz else next question */

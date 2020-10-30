@@ -1,6 +1,9 @@
 # Quiz Game Tandem for 400!
  An application that displays trivia questions with multiple-choice answers to select
 from. 
+
+## Future 
+- Randomize the answers order.
 ## Installation
 
 1. Download or fork this repo.
