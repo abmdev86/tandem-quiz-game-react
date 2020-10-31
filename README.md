@@ -22,3 +22,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
+## Development
+The App component is the highest component and single responsiblity of updating the state and passing the updates down to the childeren as props.
+
+## Issues
+- Notifying the user that they have made a correct choice or incorrect choice. I used an alert for right now but will be looking into 
+creating an animation that will notify the user.
+- Seperating rounds - currently rounds are switched based on the index of the questions. Looking to slice the array into two arrays for round 1 and round 2 with a screen notifying user of round completion and the score as well as starting a new round.

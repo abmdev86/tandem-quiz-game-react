@@ -17,14 +17,14 @@ function App () {
     // e.preventDefault()
 
     if (isCorrect) {
-      // e.target.style.class = 'correct'
       setScore(score + 1)
-      console.log('correct')
+      alert('correct!')
+    } else {
+      alert('Incorrect')
     }
     setTimeout(() => changeQuestion(), 1000)
   }
   function changeQuestion () {
-    console.log('hello from changeQuestion')
     const nextQuestion = currentQuestion + 1
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion)
