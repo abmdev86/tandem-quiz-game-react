@@ -24,22 +24,17 @@ class App extends React.Component {
   }
 
   handleSubmitAnswer = (e, isCorrect) => {
-    console.log('is correct ' + isCorrect);
     if (isCorrect) {
       e.target.className = "correct";
       this.setState((prevState) => ({
         score: prevState.score + 1,
       }));
-      // alert("correct");
     } else {
       e.target.className = "incorrect";
-      // alert("incorrect");
     }
     if (this.state.round1) {
       setTimeout(() => this.changeQuestion(e, this.state.round1Questions), 500);
-    } else {
-      setTimeout(() => this.changeQuestion(e, this.state.round2Questions), 500);
-    }
+    } 
   };
 
   changeQuestion = (e, questions) => {
@@ -53,9 +48,18 @@ class App extends React.Component {
       this.setState(() => ({
         currentQuestion: 0,
         showScore: true,
+        round1: false
       }));
     }
   };
+  nextRound = (e) => {
+    this.changeQuestion(e, this.state.round2Questions);
+    this.setState({
+      currentQuestion: 0,
+      showScore: false,
+
+    })
+  }
 
   render() {
     if (!this.state.showScore) {
@@ -76,7 +80,8 @@ class App extends React.Component {
         <ErrorBoundary>
           <ScoreCard
             score={this.state.score}
-            questions={this.state.round1Questions}
+            questions={questions}
+            startRound={this.nextRound}
           />
         </ErrorBoundary>
       );
