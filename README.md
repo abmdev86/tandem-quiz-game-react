@@ -1,7 +1,7 @@
 # Quiz Game Tandem for 400!
  An application that displays trivia questions with multiple-choice answers to select
 from. 
-
+# [Play](https://dazzling-cake.surge.sh)
 ## Future 
 - Randomize the answers order.
 ## Installation
