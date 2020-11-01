@@ -1,26 +1,44 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React from "react";
 
 const QuestionCard = (props) => {
-  return (<div >
-        <div >
-          <div >
-            <h3>{props.question + 1 <= 10 ? 'Round 1' : 'Round 2'}</h3>
-            <span>Question: {props.question + 1 }/{props.questions.length}</span>
-          </div>
+  return props.firstRound && !props.showScore ? (
+       <div>
+      <div>
+        <div>
+          <span>
+            Question: {props.currentQ + 1}/{props.round1.length}
+          </span>
         </div>
-  {/* Question label */}
-        <div><h2>{props.questions[props.question].question}</h2></div>
-        {/* Answers */}
-        <div >{
-          props.questions[props.question].incorrect.map(incorrect => (
-          <button key={incorrect.id} onClick={() => props.submit(false)}>{incorrect}</button>
-          ))
-          }
-          <button onClick={() => props.submit(true)}>{props.questions[props.question].correct}</button>
       </div>
+      {/* Question label */}
+      <div>
+        <h2>{props.round1[props.currentQ].question}</h2>
+      </div>
+      {/* Answers */}
+      <div>
+        {props.round1[props.currentQ].incorrect.map((incorrect) => {
+          let rng = Math.floor(Math.random() * Math.floor(1000));
+          return (
+            <ul key={rng.toString()}>
+              <li>
+                <button
+                  onClick={(e) => props.submit(e, false)}
+                >
+                  {incorrect}
+                </button>
+              </li>
+            </ul>
+          );
+        })}
+        <button onClick={(e) => props.submit(e, true)}>
+          {props.round1[props.currentQ].correct}
+        </button>
+      </div>
+    </div>
+  ) : (
+    <div>Round 2</div>
+  );
+};
 
-        </div>)
-}
-
-export default QuestionCard
+export default QuestionCard;

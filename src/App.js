@@ -1,59 +1,87 @@
-import React, { useState } from 'react'
-import Header from './components/Header'
-import ScoreCard from './components/ScoreCard'
-import QuestionCard from './components/QuestionCard'
-const questions = require('./data/Apprentice_TandemFor400_Data.json')
-function App () {
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [showScore, setShowScore] = useState(false)
-  const [score, setScore] = useState(0)
+import React from "react";
+import QuestionCard from "./components/QuestionCard";
+import ErrorBoundary from "./components/ErrorBoundary";
+import ScoreCard from "./components/ScoreCard";
 
-  /**
-   * Checks if answer clicked was correct and displays next question.
-   * @param {bool} isCorrect
-   *
-   */
-  const handleSubmitAnswer = (isCorrect) => {
-    // e.preventDefault()
+const questions = require("./data/Apprentice_TandemFor400_Data.json");
+const roundOneQuestions = questions.slice(0, 10);
+const roundTwoQuestions = questions.slice(11, 21);
 
+class App extends React.Component {
+  constructor() {
+    super();
+    this.handleSubmitAnswer = this.handleSubmitAnswer.bind(this);
+    this.changeQuestion = this.changeQuestion.bind(this);
+    this.state = {
+      currentQuestion: 0,
+      score: 0,
+      showScore: false,
+      round1Questions: roundOneQuestions,
+      round2Questions: roundTwoQuestions,
+      round1: true,
+      hasError: false,
+    };
+  }
+
+  handleSubmitAnswer = (e, isCorrect) => {
+    console.log('is correct ' + isCorrect);
     if (isCorrect) {
-      setScore(score + 1)
-      alert('correct!')
+      e.target.className = "correct";
+      this.setState((prevState) => ({
+        score: prevState.score + 1,
+      }));
+      // alert("correct");
     } else {
-      alert('Incorrect')
+      e.target.className = "incorrect";
+      // alert("incorrect");
     }
-    setTimeout(() => changeQuestion(), 1000)
-  }
-  function changeQuestion () {
-    const nextQuestion = currentQuestion + 1
-    if (nextQuestion < questions.length) {
-      setCurrentQuestion(nextQuestion)
+    if (this.state.round1) {
+      setTimeout(() => this.changeQuestion(e, this.state.round1Questions), 500);
     } else {
-      setShowScore(true)
+      setTimeout(() => this.changeQuestion(e, this.state.round2Questions), 500);
+    }
+  };
+
+  changeQuestion = (e, questions) => {
+    e.target.className = ' ';
+    if (this.state.currentQuestion <= questions.length) {
+      console.log("length of questions " + questions.length);
+      this.setState(() => ({
+        currentQuestion: this.state.currentQuestion + 1,
+      }));
+    } else {
+      this.setState(() => ({
+        currentQuestion: 0,
+        showScore: true,
+      }));
+    }
+  };
+
+  render() {
+    if (!this.state.showScore) {
+      return (
+        <ErrorBoundary>
+          <QuestionCard
+            round1={questions}
+            round2={this.state.round2Questions}
+            firstRound={this.state.round1}
+            showScore={this.state.showScore}
+            currentQ={this.state.currentQuestion}
+            submit={this.handleSubmitAnswer}
+          />
+        </ErrorBoundary>
+      );
+    } else {
+      return (
+        <ErrorBoundary>
+          <ScoreCard
+            score={this.state.score}
+            questions={this.state.round1Questions}
+          />
+        </ErrorBoundary>
+      );
     }
   }
-  /**
-   * restarts the state of the component
-   */
-  const handleRestart = () => {
-    setCurrentQuestion(0)
-    setScore(0)
-    setShowScore(false)
-  }
-
-  return (
-<div className="app">
-<Header/>
-  {
-    /* Display the score if the user is at end of the quiz else next question */
-    showScore
-      ? (<ScoreCard score={score} questions={questions} restart={handleRestart} />)
-      : (<QuestionCard question={currentQuestion} questions={questions} submit={handleSubmitAnswer} />)
-  }
-
-</div>
-
-  )
 }
 
-export default App
+export default App;

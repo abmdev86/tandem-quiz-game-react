@@ -9,7 +9,7 @@ const ScoreCard = (props) => {
   return (
         <div >
             <h3>You scored {props.score} out of {props.questions.length}</h3>
-            <button onClick={props.restart}>Restart</button>
+           
         </div>
   )
 }

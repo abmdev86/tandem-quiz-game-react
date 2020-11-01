@@ -43,6 +43,9 @@ h3,span{
   margin: 0 0 72px; 
   text-align: center;
 }
+ul{
+  list-style-type: none;
+}
 button{
   -webkit-appearance: none;
   background: linear-gradient(#D8D9DB 0%, #fff 80%, #FDFDFD 100%);
@@ -61,7 +64,10 @@ button{
   padding: 30px;
 }
 .correct{
-  background-color: green;
+  background: green;
+}
+.incorrect{
+  background: red;
 }
 .app{
  background-color: #487f9b;
