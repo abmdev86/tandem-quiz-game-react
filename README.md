@@ -2,16 +2,18 @@
  An application that displays trivia questions with multiple-choice answers to select
 from. 
 # [Play](https://dazzling-cake.surge.sh)
-## Future 
+## Future updates 
 - Randomize the answers order.
 ## Installation
-
+If you wish to clone the repo
 1. Download or fork this repo.
 
-## Dependancies
+### Dependancies
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+to install dependancies run the command 
+```bash npm start ```
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 
@@ -28,5 +30,4 @@ The App component is the highest component and single responsiblity of updating 
 
 ## Issues
 - Score display are off
-- round 2 loops
 - Answers are predictable correct answer is the same position
