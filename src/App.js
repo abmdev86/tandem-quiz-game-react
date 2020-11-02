@@ -5,7 +5,7 @@ import ScoreCard from "./components/ScoreCard";
 
 const questions = require("./data/Apprentice_TandemFor400_Data.json");
 const roundOneQuestions = questions.slice(0, 10);
-const roundTwoQuestions = questions.slice(11, 21);
+const roundTwoQuestions = questions.slice(10, 21);
 
 class App extends React.Component {
   constructor() {
@@ -34,19 +34,20 @@ class App extends React.Component {
     }
     if (this.state.round1) {
       setTimeout(() => this.changeQuestion(e, this.state.round1Questions), 500);
-    } 
+    } else {
+      setTimeout(() => this.changeQuestion(e, this.state.round2Questions), 500);
+      
+    }
   };
 
-  changeQuestion = (e, questions) => {
+  changeQuestion = (e, roundQuestions) => {
     e.target.className = ' ';
-    if (this.state.currentQuestion <= questions.length) {
-      console.log("length of questions " + questions.length);
-      this.setState(() => ({
-        currentQuestion: this.state.currentQuestion + 1,
+    if (this.state.currentQuestion < roundQuestions.length - 1) {
+      this.setState((prevState) => ({
+        currentQuestion: prevState.currentQuestion + 1,
       }));
     } else {
       this.setState(() => ({
-        currentQuestion: 0,
         showScore: true,
         round1: false
       }));
@@ -66,7 +67,7 @@ class App extends React.Component {
       return (
         <ErrorBoundary>
           <QuestionCard
-            round1={questions}
+            round1={this.state.round1Questions}
             round2={this.state.round2Questions}
             firstRound={this.state.round1}
             showScore={this.state.showScore}
@@ -76,11 +77,19 @@ class App extends React.Component {
         </ErrorBoundary>
       );
     } else {
-      return (
+      return this.round1 ? (
         <ErrorBoundary>
           <ScoreCard
             score={this.state.score}
             questions={questions}
+            startRound={this.nextRound}
+          />
+        </ErrorBoundary>
+      ) : (
+        <ErrorBoundary>
+          <ScoreCard
+            score={this.state.score}
+            questions={this.state.round2Questions}
             startRound={this.nextRound}
           />
         </ErrorBoundary>

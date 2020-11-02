@@ -2,6 +2,7 @@
 import React from "react";
 
 const QuestionCard = (props) => {
+  
   return props.firstRound && !props.showScore ? (
     <div>
       <div>
@@ -50,7 +51,7 @@ const QuestionCard = (props) => {
       {/* Answers */}
       <div>
         {props.round2[props.currentQ].incorrect.map((incorrect) => {
-          let rng = Math.floor(Math.random() * Math.floor(1000));
+          let rng = Math.floor(Math.random() * Math.floor(2000));
           return (
             <ul key={rng.toString()}>
               <li>
