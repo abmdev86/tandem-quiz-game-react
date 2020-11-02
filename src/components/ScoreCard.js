@@ -21,9 +21,9 @@ const ScoreCard = (props) => {
       return (
         <div>
           <h3>
-            You scored {props.score - 10} out of {props.questions.length}
+            You scored {props.score > 11 ?  props.score - 10: props.score} out of {props.questions.length}
           </h3>
-          <button onClick={(e) => props.startRound(e)}>Next Round</button>
+          <button onClick={() => props.gameOver()}>End</button>
         </div>
       );
       }

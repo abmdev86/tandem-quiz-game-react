@@ -2,6 +2,7 @@ import React from "react";
 import QuestionCard from "./components/QuestionCard";
 import ErrorBoundary from "./components/ErrorBoundary";
 import ScoreCard from "./components/ScoreCard";
+import SummaryCard from "./components/SummaryCard"
 
 const questions = require("./data/Apprentice_TandemFor400_Data.json");
 const roundOneQuestions = questions.slice(0, 10);
@@ -19,10 +20,14 @@ class App extends React.Component {
       round1Questions: roundOneQuestions,
       round2Questions: roundTwoQuestions,
       round1: true,
-      hasError: false,
+      endGame: false
     };
   }
-
+/**
+ * Checks if answer is correct and updates score
+ * @param {Event} e 
+ * @param {bool} isCorrect 
+ */
   handleSubmitAnswer = (e, isCorrect) => {
     if (isCorrect) {
       e.target.className = "correct";
@@ -39,7 +44,11 @@ class App extends React.Component {
       
     }
   };
-
+/**
+ * Advances the questions per array length displays ScoreCard when at end of array
+ * @param {Event} e 
+ * @param {array} roundQuestions 
+ */
   changeQuestion = (e, roundQuestions) => {
     e.target.className = ' ';
     if (this.state.currentQuestion < roundQuestions.length - 1) {
@@ -52,12 +61,40 @@ class App extends React.Component {
       }));
     }
   };
+  /**
+   * Advances to the next round
+   * @param {Event} e 
+   */
   nextRound = (e) => {
     this.changeQuestion(e, this.state.round2Questions);
     this.setState({
       currentQuestion: 0,
       showScore: false,
       round1: false,
+    });
+  }
+  /**
+   * Sets game end to true to display SummaryCard
+   */
+  handleEndGame = () => {
+    console.log('hello from endgame')
+    
+    this.setState({
+      endGame: true
+    });
+  }
+/**
+ * Restarts the quiz
+ */
+  restartGame = () => {
+    this.setState({
+      currentQuestion: 0,
+      score: 0,
+      showScore: false,
+      round1Questions: roundOneQuestions,
+      round2Questions: roundTwoQuestions,
+      round1: true,
+      endGame: false,
     });
   }
 
@@ -75,6 +112,8 @@ class App extends React.Component {
           />
         </ErrorBoundary>
       );
+    } else if (this.state.endGame) { 
+      return <SummaryCard score={this.state.score} restart={this.restartGame}/>
     } else {
       return this.round1 ? (
         <ErrorBoundary>
@@ -91,6 +130,7 @@ class App extends React.Component {
             questions={this.state.round2Questions}
               startRound={this.nextRound}
               isRound1={this.state.round1}
+              gameOver={this.handleEndGame}
           />
         </ErrorBoundary>
       );

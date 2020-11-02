@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { Fragment } from "react";
 
 const QuestionCard = (props) => {
   
@@ -56,11 +56,13 @@ const QuestionCard = (props) => {
           let rng = Math.floor(Math.random() * Math.floor(2000));
           return (
             <ul key={rng.toString()}>
-              <li>
-                <button onClick={(e) => props.submit(e, false)}>
-                  {incorrect}
-                </button>
-              </li>
+              <Fragment>
+                <li>
+                  <button onClick={(e) => props.submit(e, false)}>
+                    {incorrect}
+                  </button>
+                </li>
+              </Fragment>
             </ul>
           );
         })}
