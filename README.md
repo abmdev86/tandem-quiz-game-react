@@ -1,7 +1,7 @@
 # Quiz Game Tandem for 400!
  Trivia game can you answer all of them correctly?
  # Run the application
-### [Play](https://dazzling-cake.surge.sh)
+### Click [Play](https://dazzling-cake.surge.sh)
 
 ## Installation
 If you wish to clone the repo
