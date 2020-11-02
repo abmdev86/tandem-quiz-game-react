@@ -2,8 +2,9 @@
 import React from "react";
 
 const QuestionCard = (props) => {
+  
   return props.firstRound && !props.showScore ? (
-       <div>
+    <div>
       <div>
         <div>
           <span>
@@ -22,9 +23,7 @@ const QuestionCard = (props) => {
           return (
             <ul key={rng.toString()}>
               <li>
-                <button
-                  onClick={(e) => props.submit(e, false)}
-                >
+                <button onClick={(e) => props.submit(e, false)}>
                   {incorrect}
                 </button>
               </li>
@@ -37,7 +36,37 @@ const QuestionCard = (props) => {
       </div>
     </div>
   ) : (
-    <div>Round 2</div>
+    <div>
+      <div>
+        <div>
+          <span>
+            Question: {props.currentQ + 1}/{props.round2.length}
+          </span>
+        </div>
+      </div>
+      {/* Question label */}
+      <div>
+        <h2>{props.round2[props.currentQ].question}</h2>
+      </div>
+      {/* Answers */}
+      <div>
+        {props.round2[props.currentQ].incorrect.map((incorrect) => {
+          let rng = Math.floor(Math.random() * Math.floor(2000));
+          return (
+            <ul key={rng.toString()}>
+              <li>
+                <button onClick={(e) => props.submit(e, false)}>
+                  {incorrect}
+                </button>
+              </li>
+            </ul>
+          );
+        })}
+        <button onClick={(e) => props.submit(e, true)}>
+          {props.round2[props.currentQ].correct}
+        </button>
+      </div>
+    </div>
   );
 };
 

@@ -27,4 +27,5 @@ You will also see any lint errors in the console.
 The App component is the highest component and single responsiblity of updating the state and passing the updates down to the childeren as props.
 
 ## Issues
-- Second round will not start.
+- Score display are off
+- round 2 loops
