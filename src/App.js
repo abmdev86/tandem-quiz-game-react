@@ -49,7 +49,6 @@ class App extends React.Component {
     } else {
       this.setState(() => ({
         showScore: true,
-        round1: false
       }));
     }
   };
@@ -58,8 +57,8 @@ class App extends React.Component {
     this.setState({
       currentQuestion: 0,
       showScore: false,
-
-    })
+      round1: false,
+    });
   }
 
   render() {
@@ -81,7 +80,7 @@ class App extends React.Component {
         <ErrorBoundary>
           <ScoreCard
             score={this.state.score}
-            questions={questions}
+            questions={this.state.round1Questions}
             startRound={this.nextRound}
           />
         </ErrorBoundary>
@@ -90,7 +89,8 @@ class App extends React.Component {
           <ScoreCard
             score={this.state.score}
             questions={this.state.round2Questions}
-            startRound={this.nextRound}
+              startRound={this.nextRound}
+              isRound1={this.state.round1}
           />
         </ErrorBoundary>
       );

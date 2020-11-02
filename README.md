@@ -29,3 +29,4 @@ The App component is the highest component and single responsiblity of updating 
 ## Issues
 - Score display are off
 - round 2 loops
+- Answers are predictable correct answer is the same position

@@ -8,6 +8,7 @@ const QuestionCard = (props) => {
       <div>
         <div>
           <span>
+            Round: 1 
             Question: {props.currentQ + 1}/{props.round1.length}
           </span>
         </div>
@@ -39,7 +40,8 @@ const QuestionCard = (props) => {
     <div>
       <div>
         <div>
-          <span>
+            <span>
+              Round: 2
             Question: {props.currentQ + 1}/{props.round2.length}
           </span>
         </div>
