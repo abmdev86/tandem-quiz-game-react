@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 const Header = () => {
   return (
-        <header >
+    <header >
       <h1>Modern Computer Quiz Game</h1>
-      </header>
-  )
-}
+    </header>
+  );
+};
 
-export default Header
+export default Header;
