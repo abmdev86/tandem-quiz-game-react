@@ -50,6 +50,19 @@ export default function App() {
           isCorrect: false,
         },
       ],
+    },
+    {
+      questionText: "What is 1010 in Decimal?",
+      answers: [
+        {
+          answerText: "10",
+          isCorrect: true,
+        },
+        {
+          answerText: "1100",
+          isCorrect: false,
+        },
+      ],
     }
   ];
 
