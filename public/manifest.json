@@ -1,8 +1,8 @@
 {
-  "short_name": "Tandem Quiz",
-  "name": "Tandem Quiz Game React",
+  "short_name": "Modern Computer Quiz",
+  "name": "Modern Computer Quiz Game",
   "icons": [
- 
+
   ],
   "start_url": ".",
   "display": "standalone",
