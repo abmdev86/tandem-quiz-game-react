@@ -94,5 +94,59 @@ export const questions = [
         isCorrect: false,
       }
     ],
+  },
+  {
+    "questionText": "What is a valid byte?",
+    "answers": [
+      {
+        "answerText": "00000000",
+        "isCorrect": true
+      }, {
+        "answerText": "1",
+        "isCorrect": false
+      }, {
+        "answerText": "12112111",
+        "isCorrect": false
+      }, {
+        "answerText": "01101",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "questionText": " How many Possible Values are there with 8 bytes?",
+    "answers": [
+      {
+        "answerText": "259",
+        "isCorrect": false
+      }, {
+        "answerText": "256",
+        "isCorrect": true
+      }, {
+        "answerText": "255",
+        "isCorrect": false
+      }, {
+        "answerText": "1",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "questionText": " Why did UTF-8 replace ASCII?",
+    "answers": [
+      {
+        "answerText": "it can store a character in less bytes ",
+        "isCorrect": false
+      }, {
+        "answerText": "It has Emojis",
+        "isCorrect": false
+      }, {
+        "answerText": "Not Sure",
+        "isCorrect": false
+      }, {
+        "answerText": " it can store a character in more than a single byte",
+        "isCorrect": true
+      }
+    ]
   }
 ];
