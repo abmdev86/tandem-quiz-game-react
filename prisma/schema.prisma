@@ -1,11 +1,36 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model question {
+  id                       Int    @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  questionText             String @db.VarChar(255)
+  answer1                  String @db.VarChar(255)
+  answer2                  String @db.VarChar(255)
+  answer3                  String @db.VarChar(255)
+  answer4                  String @db.VarChar(255)
+  correct_answer           String @db.VarChar(255)
+  quiz                     Int
+  quiz_question_quizToquiz quiz   @relation("question_quizToquiz", fields: [quiz], references: [id], onDelete: Cascade, map: "quizId")
+
+  @@index([quiz], map: "quizId_idx")
+}
+
+model quiz {
+  id                           Int        @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  title                        String     @db.VarChar(255)
+  createdAt                    DateTime   @default(now()) @db.Timestamp(0)
+  question_question_quizToquiz question[] @relation("question_quizToquiz")
+}
+
+model user {
+  id       Int     @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  username String? @db.VarChar(255)
+  email    String  @unique(map: "email_UNIQUE") @db.VarChar(255)
+  score    String  @default("0") @db.VarChar(45)
 }
