@@ -8,6 +8,16 @@ interface Props {
 interface State {
   hasError: boolean;
 }
+
+const FallBackUI = (): JSX.Element => {
+  return (
+    <div className=" flex-auto items-center bg-rose-500 px-4 md:container md:mx-auto ">
+      <h1 className="text-white-500 text-center ">
+        Sorry... there was an error
+      </h1>
+    </div>
+  );
+};
 export default class ErrorBoundary extends Component<Props, State> {
   public state: State = {
     hasError: false,
@@ -22,9 +32,9 @@ export default class ErrorBoundary extends Component<Props, State> {
     console.error("Uncaught error:", error, errorInfo);
   }
 
-  public render(): React.ReactNode {
+  public render(): ReactNode {
     if (this.state.hasError) {
-      return this.props.fallbackUI ?? <h1>Sorry... there was an error</h1>;
+      return this.props.fallbackUI ?? <FallBackUI />;
     }
     return this.props.children;
   }
