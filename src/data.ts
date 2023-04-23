@@ -169,5 +169,7 @@ const questions = [
     ],
   },
 ];
-
-export default questions;
+const OLDQUIZ = {
+  questions: [...questions],
+};
+export default OLDQUIZ;
